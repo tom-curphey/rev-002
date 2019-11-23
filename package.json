@@ -1,0 +1,23 @@
+{
+  "name": "rev-002",
+  "version": "1.0.0",
+  "description": "Recipe Version 2",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index",
+    "client": "cd client && yarn start",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
+  },
+  "author": "Tom Curphey <tomcurphey12@gmail.com>",
+  "license": "PRIVATE",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^2.0.1"
+  }
+}
