@@ -1,21 +1,23 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const OptionsSideMenuContainer = styled.div`
-  display: flex;
-  padding: 8px;
-  justify-content: space-between;
-  align-items: center;
-`;
+export const OptionsSideMenuContainer = styled.div``;
 
 export const MenuLink = styled(Link)`
-  font-size: 16px;
-  font-family: "Montserrat", sans-serif;
+  display: flex;
+  padding: 8px;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text.default};
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
 `;
 
-export const MenuIcon = styled.div``;
+export const MenuOptionText = styled.span`
+  font-family: "Montserrat", sans-serif;
+
+  color: ${({ theme }) => theme.text.default};
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 10%;
+`;

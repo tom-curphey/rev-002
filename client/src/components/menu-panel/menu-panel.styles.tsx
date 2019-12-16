@@ -11,4 +11,17 @@ export const MenuPanelContainer = styled.div`
   width: 10em;
 `;
 
-export const MenuPanelOption = styled(Link)``;
+export const MenuLink = styled(Link)`
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  color: ${({ theme }) => theme.text.default};
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 10%;
+  display: flex;
+  padding: 8px;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+`;
