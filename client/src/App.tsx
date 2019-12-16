@@ -1,18 +1,18 @@
-import React from "react"
-import MyForm from "./components/shared/formElements"
+import React from "react";
+import MyForm from "./components/shared/formElements";
 
-const App: React.FC = () => {
-  return (
-    <div style={{ textAlign: "center" }}>
-      Ola Kalindi
-      <br />
-      <MyForm
-        onSubmit={({ firstName, lastName, email }) => {
-          console.log("Form", firstName, lastName, email)
-        }}
-      />
-    </div>
-  )
-}
+import { Route, Switch } from "react-router-dom";
 
-export default App
+const MenuPage = () => <div>MENU ITEMS</div>;
+const LandingPage = () => <div>LANDING PAGE</div>;
+
+const App: React.FC = () => (
+  <div>
+    <Switch>
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/menu-items" component={MenuPage} />
+    </Switch>
+  </div>
+);
+
+export default App;
