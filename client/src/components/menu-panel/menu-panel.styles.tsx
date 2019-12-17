@@ -12,7 +12,6 @@ export const MenuPanelContainer = styled.div`
 `;
 
 export const MenuLink = styled(Link)`
-  font-family: "Montserrat", sans-serif;
   text-decoration: none;
   color: ${({ theme }) => theme.text.default};
   font-weight: 500;

@@ -16,5 +16,6 @@ export const theme = {
     faded: " #999999"
   },
   textHeading: "#343434",
-  background: "#F1EDE7"
+  background: "#F1EDE7",
+  fontFamily: "Montserrat, sans-serif"
 };
