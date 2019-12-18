@@ -11,11 +11,14 @@ const buttonColorStyles = ({ color, inverted }: IProps) => {
   return inverted
     ? css`
     background: #ffffff
-    border: 2px solid;
+    border: 1px solid;
+    
     color: ${({ theme }) => theme[buttonColor].default} 
+    span {
+      color: black;
+    }
       &:hover{
         color: ${({ theme }) => theme[buttonColor].faded}
-        
         cursor: pointer;
       }
     `
@@ -30,13 +33,13 @@ const buttonColorStyles = ({ color, inverted }: IProps) => {
 };
 
 export const ButtonRoundContainer = styled.button`
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 17px;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   border-radius: 20px;
   border: none;

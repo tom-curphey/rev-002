@@ -39,7 +39,7 @@ export const TotalCol = styled.td`
   button {
     border: none;
     background: none;
-    padding: 0;
+    padding: 0 0 0 10px;
   }
 `;
 
@@ -47,6 +47,7 @@ export const TotalColContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-right: 10px;
 `;
 
 export const RecipeDetailsIcon = styled.img`

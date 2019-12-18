@@ -5,19 +5,22 @@ import {
   CardButton,
   RecipeInputs,
   RecipeTable,
-  RecipeTableHeader
+  RecipeTableHeader,
+  UpdateTableButton,
+  TableUpdateButtonsContainer
 } from "./add-recipe.styles";
 
 import RecipeDetails from "../recipe-details/recipe-details.component";
 
 import IconApple from "../../assets/icon-apple.svg";
+import IconChefHat from "../../assets/icon-chef-hat.svg";
+import IconTimer from "../../assets/icon-timer.svg";
 
 interface IStateRecipeDetails {
   icon: any;
   recipeDetails: string;
   units: string;
   quantity: number;
-  total: number;
 }
 
 const RecipeCard: React.FC = () => {
@@ -28,10 +31,20 @@ const RecipeCard: React.FC = () => {
       icon: IconApple,
       recipeDetails: "",
       units: "grams",
-      quantity: 0,
-      total: 0
+      quantity: 0
     }
   ]);
+
+  const [total, setTotal] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    setTotal(
+      listRecipeDetails.reduce(
+        (accumulate, item) => accumulate + item.quantity,
+        0
+      )
+    );
+  });
 
   const updateRecipeDetails = (key: number, input: string) =>
     setlistRecipeDetails(
@@ -53,8 +66,7 @@ const RecipeCard: React.FC = () => {
         listRecipeDetails.indexOf(item) === key
           ? {
               ...item,
-              quantity: parseInt(quantityUpdate),
-              total: parseInt(quantityUpdate)
+              quantity: parseInt(quantityUpdate)
             }
           : item
       )
@@ -117,6 +129,54 @@ const RecipeCard: React.FC = () => {
           })}
         </tbody>
       </RecipeTable>
+      <TableUpdateButtonsContainer>
+        <UpdateTableButton
+          color="primary"
+          onClick={() => {
+            setlistRecipeDetails(
+              listRecipeDetails.concat({
+                icon: IconApple,
+                recipeDetails: "",
+                units: "grams",
+                quantity: 0
+              })
+            );
+          }}
+        >
+          Add Ingredient
+        </UpdateTableButton>
+        <UpdateTableButton
+          inverted
+          onClick={() => {
+            setlistRecipeDetails(
+              listRecipeDetails.concat({
+                icon: IconChefHat,
+                recipeDetails: "",
+                units: "minutes",
+                quantity: 0
+              })
+            );
+          }}
+        >
+          <span>Add Staff Time</span>
+        </UpdateTableButton>
+        <UpdateTableButton
+          inverted
+          onClick={() => {
+            setlistRecipeDetails(
+              listRecipeDetails.concat({
+                icon: IconTimer,
+                recipeDetails: "",
+                units: "minutes",
+                quantity: 0
+              })
+            );
+          }}
+        >
+          <span>Add Process Time</span>
+        </UpdateTableButton>
+      </TableUpdateButtonsContainer>
+      <div>TOTAL: {total}</div>
     </RecipeCardContainer>
   );
 };

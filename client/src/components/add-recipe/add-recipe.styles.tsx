@@ -22,10 +22,6 @@ export const CardButton = styled(ButtonRound)`
   height: 100px;
   border: 1px solid;
   margin-left: 15px;
-  span {
-    font-weight: bold;
-    color: black;
-  }
 `;
 
 export const RecipeInputs = styled.ul`
@@ -63,5 +59,15 @@ export const RecipeTable = styled.table`
 
 export const RecipeTableHeader = styled.tr`
   background: ${({ theme }) => theme.background};
+  height: 40px;
+`;
+
+export const TableUpdateButtonsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+`;
+
+export const UpdateTableButton = styled(ButtonRound)`
+  border-radius: unset;
   height: 40px;
 `;
