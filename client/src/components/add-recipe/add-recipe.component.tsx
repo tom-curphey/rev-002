@@ -10,43 +10,115 @@ import {
 
 import RecipeDetails from "../recipe-details/recipe-details.component";
 
-const RecipeCard: React.FC = () => (
-  <RecipeCardContainer>
-    <CardTop>
-      <CardButton inverted>
-        <span>Add Recipe Name +</span>
-      </CardButton>
-      <RecipeInputs>
-        <li>
-          <div>
-            <label>Recipe Serves</label>
-            <input />
-          </div>
-        </li>
-        <li>
-          <div>
-            <label>Sales Price Per Serve</label>
-            <input />
-          </div>
-        </li>
-        <li>
-          <div>
-            <label>Expected Weekly Sales Per Serve</label>
-            <input />
-          </div>
-        </li>
-      </RecipeInputs>
-    </CardTop>
-    <RecipeTable>
-      <RecipeTableHeader>
-        <th scope="column">Recipe Details</th>
-        <th scope="column">Quantity</th>
-        <th scope="column">Units</th>
-        <th scope="column">Total</th>
-      </RecipeTableHeader>
-      <RecipeDetails />
-    </RecipeTable>
-  </RecipeCardContainer>
-);
+import IconApple from "../../assets/icon-apple.svg";
+
+interface IStateRecipeDetails {
+  icon: any;
+  recipeDetails: string;
+  units: string;
+  quantity: number;
+  total: number;
+}
+
+const RecipeCard: React.FC = () => {
+  const [listRecipeDetails, setlistRecipeDetails] = React.useState<
+    IStateRecipeDetails[]
+  >([
+    {
+      icon: IconApple,
+      recipeDetails: "",
+      units: "grams",
+      quantity: 0,
+      total: 0
+    }
+  ]);
+
+  const updateRecipeDetails = (key: number, input: string) =>
+    setlistRecipeDetails(
+      listRecipeDetails.map(item =>
+        listRecipeDetails.indexOf(item) === key
+          ? { ...item, recipeDetails: input }
+          : item
+      )
+    );
+
+  const updateQuantity = (key: number, quantity: string) => {
+    let quantityUpdate = quantity;
+    if (quantity === "") {
+      quantityUpdate = "0";
+    }
+
+    setlistRecipeDetails(
+      listRecipeDetails.map(item =>
+        listRecipeDetails.indexOf(item) === key
+          ? {
+              ...item,
+              quantity: parseInt(quantityUpdate),
+              total: parseInt(quantityUpdate)
+            }
+          : item
+      )
+    );
+  };
+
+  const deleteItem = (key: number) =>
+    setlistRecipeDetails(
+      listRecipeDetails.filter(item => listRecipeDetails.indexOf(item) !== key)
+    );
+
+  return (
+    <RecipeCardContainer>
+      <CardTop>
+        <CardButton inverted>
+          <span>Add Recipe Name +</span>
+        </CardButton>
+        <RecipeInputs>
+          <li>
+            <div>
+              <label>Recipe Serves</label>
+              <input />
+            </div>
+          </li>
+          <li>
+            <div>
+              <label>Sales Price Per Serve</label>
+              <input />
+            </div>
+          </li>
+          <li>
+            <div>
+              <label>Expected Weekly Sales Per Serve</label>
+              <input />
+            </div>
+          </li>
+        </RecipeInputs>
+      </CardTop>
+      <RecipeTable>
+        <thead>
+          <RecipeTableHeader>
+            <th scope="column">Recipe Details</th>
+            <th scope="column">Quantity</th>
+            <th scope="column">Units</th>
+            <th scope="column">Total</th>
+          </RecipeTableHeader>
+        </thead>
+        <tbody>
+          {listRecipeDetails.map(row => {
+            const key = listRecipeDetails.indexOf(row);
+            return (
+              <RecipeDetails
+                key={key}
+                onUpdateRecipeDetails={e => updateRecipeDetails(key, e)}
+                onUpdateQuantity={e => updateQuantity(key, e)}
+                onDeleteItem={() => deleteItem(key)}
+                {...row}
+              />
+            );
+          })}
+        </tbody>
+      </RecipeTable>
+    </RecipeCardContainer>
+  );
+};
 
 export default RecipeCard;

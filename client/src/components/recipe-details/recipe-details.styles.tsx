@@ -35,12 +35,18 @@ export const UnitsCol = styled.td`
 
 export const TotalCol = styled.td`
   width: 20%;
-
+  text-align: center;
   button {
     border: none;
     background: none;
     padding: 0;
   }
+`;
+
+export const TotalColContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 export const RecipeDetailsIcon = styled.img`

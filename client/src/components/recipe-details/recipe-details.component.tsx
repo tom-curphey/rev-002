@@ -7,36 +7,57 @@ import {
   QuantityCol,
   UnitsCol,
   TotalCol,
-  UnitsInput,
   RecipeDetailsFieldContainer,
-  RecipeDetailsIcon
+  RecipeDetailsIcon,
+  TotalColContainer
 } from "./recipe-details.styles";
 
-import IconApple from "../../assets/icon-apple.svg";
+interface IProps {
+  icon?: any;
+  total?: number;
+  quantity: number;
+  units: string;
+  onUpdateRecipeDetails: (input: string) => void;
+  onUpdateQuantity: (input: string) => void;
+  onDeleteItem: () => void;
+}
 
-const RecipeDetails: React.FC = () => (
+const RecipeDetails: React.FC<IProps> = ({
+  icon,
+  quantity,
+  units,
+  onUpdateRecipeDetails,
+  onUpdateQuantity,
+  onDeleteItem
+}: IProps) => (
   <RecipeDetailsContainer>
     <RecipeDetailsCol>
       <RecipeDetailsFieldContainer>
-        <RecipeDetailsIcon src={IconApple} />
-        <RecipeDetailsInput />
+        <RecipeDetailsIcon src={icon} />
+        <RecipeDetailsInput
+          type="text"
+          onChange={e => onUpdateRecipeDetails(e.target.value)}
+        />
       </RecipeDetailsFieldContainer>
     </RecipeDetailsCol>
     <QuantityCol>
-      <RecipeDetailsInput />
+      <RecipeDetailsInput
+        type="text"
+        onChange={e => onUpdateQuantity(e.target.value)}
+      />
     </QuantityCol>
     <UnitsCol>
-      <UnitsInput type="number" placeholder="min" />
+      <p>{units}</p>
     </UnitsCol>
     <TotalCol>
-      <div>
-        Total:
+      <TotalColContainer>
         <span>
-          <button>
-            <DeleteIcon />
-          </button>
+          Total: {quantity} {units}
         </span>
-      </div>
+        <button onClick={() => onDeleteItem()}>
+          <DeleteIcon />
+        </button>
+      </TotalColContainer>
     </TotalCol>
   </RecipeDetailsContainer>
 );
