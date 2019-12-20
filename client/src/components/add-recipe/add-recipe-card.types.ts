@@ -7,7 +7,10 @@ export interface IRecipeDetails {
 
 export interface IState {
   recipeDetails: IRecipeDetails[];
-  totalQuantity: number;
+
+  staffTime: number;
+  processTime: number;
+  totalGrams: number;
   totalTime: number;
 }
 
@@ -17,6 +20,6 @@ export type Actions =
   | { type: "UPDATE_RECIPE_DETAILS"; payload: { id: number; event: string } }
   | {
       type: "UPDATE_QUANTITY";
-      payload: { id: number; event: number };
+      payload: { id: number; icon: any; event: number };
     }
   | { type: "UPDATE_TOTAL"; payload: any };

@@ -10,3 +10,16 @@ export const RecipeCardContainer = styled.div`
   flex-direction: column;
   border-radius: 15px;
 `;
+
+export const TotalContainer = styled.div`
+  align-self: flex-end;
+  margin: 40px 20px;
+  width: 30%;
+`;
+
+export const TotalUnit = styled.p`
+  margin: 20px auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;

@@ -1,34 +1,18 @@
 import * as React from "react";
 import { IRecipeDetails, Actions } from "../add-recipe-card.types";
-import { ReactComponent as DeleteIcon } from "../../../assets/icon-delete.svg";
+
 import {
-  RecipeDetailsContainer,
-  RecipeDetailsInput,
-  RecipeDetailsCol,
-  QuantityCol,
-  UnitsCol,
-  TotalCol,
-  RecipeDetailsFieldContainer,
-  RecipeDetailsIcon,
-  TotalColContainer,
   RecipeTable,
   RecipeTableHeader,
   TableUpdateButtonsContainer,
   UpdateTableButton
 } from "./recipe-details.styles";
 
+import RecipeDetailsRow from "../recipe-details-row/recipe-details-row.component";
+
 import IconChefHat from "../../../assets/icon-chef-hat.svg";
 import IconTimer from "../../../assets/icon-timer.svg";
 import IconApple from "../../../assets/icon-apple.svg";
-
-interface IRecipeDetailRowProps {
-  icon?: any;
-  total?: number;
-  quantity: number;
-  units: string;
-  num: number;
-  dispatch: React.Dispatch<Actions>;
-}
 
 interface IRecipeTableProps {
   recipeDetails: IRecipeDetails[];
@@ -57,7 +41,7 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
               <RecipeDetailsRow
                 dispatch={dispatch}
                 key={key}
-                num={key}
+                idx={key}
                 {...row}
               />
             );
@@ -117,67 +101,5 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
     </div>
   );
 };
-
-const RecipeDetailsRow: React.FC<IRecipeDetailRowProps> = ({
-  icon,
-  num: idx,
-  quantity,
-  units,
-  dispatch
-}: IRecipeDetailRowProps) => (
-  <RecipeDetailsContainer>
-    <RecipeDetailsCol>
-      <RecipeDetailsFieldContainer>
-        <RecipeDetailsIcon src={icon} />
-        <RecipeDetailsInput
-          type="text"
-          onChange={e =>
-            dispatch({
-              type: "UPDATE_RECIPE_DETAILS",
-              payload: {
-                id: idx,
-                event: e.target.value
-              }
-            })
-          }
-        />
-      </RecipeDetailsFieldContainer>
-    </RecipeDetailsCol>
-    <QuantityCol>
-      <RecipeDetailsInput
-        type="text"
-        onChange={e =>
-          dispatch({
-            type: "UPDATE_QUANTITY",
-            payload: {
-              id: idx,
-              event: parseInt(e.target.value)
-            }
-          })
-        }
-      />
-    </QuantityCol>
-    <UnitsCol>
-      <p>{units}</p>
-    </UnitsCol>
-    <TotalCol>
-      <TotalColContainer>
-        <span>
-          Total: {quantity} {units}
-        </span>
-        <button
-          onClick={() =>
-            dispatch({
-              type: "REMOVE_ITEM",
-              payload: idx
-            })
-          }
-        >
-          <DeleteIcon />
-        </button>
-      </TotalColContainer>
-    </TotalCol>
-  </RecipeDetailsContainer>
-);
 
 export default RecipeDetailsTable;
