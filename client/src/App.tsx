@@ -2,8 +2,8 @@ import React from "react";
 
 import { Route, Switch } from "react-router-dom";
 
-import MenuPanel from "./components/menu-panel/menu-panel.component";
-import RecipeCard from "./components/add-recipe/add-recipe-card.component";
+import MenuPanel from "./components/shared/menu-panel/menu-panel.component";
+import RecipeCard from "./components/shared/recipeCard/recipeCard.component";
 import { GlobalStyle } from "./global.styles";
 
 const MenuPage = () => <div>MENU ITEMS</div>;

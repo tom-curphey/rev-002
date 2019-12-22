@@ -1,28 +1,28 @@
-import { IState, Actions } from "./add-recipe-card.types";
+import { IState, Actions } from "./recipeCard.types";
 
-import { updateItemQuantity } from "./add-recipe.utils";
+import { updateItemQuantity } from "./recipeCard.utils";
 
 const recipeCardReducer = (state: IState, action: Actions) => {
   switch (action.type) {
     case "ADD_NEW_INGREDIENT":
       return {
         ...state,
-        recipeDetails: state.recipeDetails.concat(action.payload)
+        recipeSteps: state.recipeSteps.concat(action.payload)
       };
 
     case "REMOVE_ITEM":
       return {
         ...state,
-        recipeDetails: state.recipeDetails.filter(
-          item => state.recipeDetails.indexOf(item) !== action.payload
+        recipeSteps: state.recipeSteps.filter(
+          item => state.recipeSteps.indexOf(item) !== action.payload
         )
       };
 
     case "UPDATE_RECIPE_DETAILS":
       return {
         ...state,
-        recipeDetails: state.recipeDetails.map(item =>
-          state.recipeDetails.indexOf(item) === action.payload.id
+        recipeSteps: state.recipeSteps.map(item =>
+          state.recipeSteps.indexOf(item) === action.payload.id
             ? { ...item, itemName: action.payload.event }
             : item
         )
@@ -33,8 +33,8 @@ const recipeCardReducer = (state: IState, action: Actions) => {
         case "INGREDIENT":
           return {
             ...state,
-            recipeDetails: updateItemQuantity(
-              state.recipeDetails,
+            recipeSteps: updateItemQuantity(
+              state.recipeSteps,
               action.payload.id,
               action.payload.event
             )
@@ -43,8 +43,8 @@ const recipeCardReducer = (state: IState, action: Actions) => {
         case "STAFF_TIME":
           return {
             ...state,
-            recipeDetails: updateItemQuantity(
-              state.recipeDetails,
+            recipeSteps: updateItemQuantity(
+              state.recipeSteps,
               action.payload.id,
               action.payload.event
             )
@@ -52,8 +52,8 @@ const recipeCardReducer = (state: IState, action: Actions) => {
         case "PROCESS_TIME":
           return {
             ...state,
-            recipeDetails: updateItemQuantity(
-              state.recipeDetails,
+            recipeSteps: updateItemQuantity(
+              state.recipeSteps,
               action.payload.id,
               action.payload.event
             )

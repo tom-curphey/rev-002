@@ -1,4 +1,4 @@
-export interface IRecipeDetail {
+export interface RecipeStep {
   icon: any;
   itemType: string;
   itemName: string;
@@ -7,7 +7,7 @@ export interface IRecipeDetail {
 }
 
 export interface IState {
-  recipeDetails: IRecipeDetail[];
+  recipeSteps: RecipeStep[];
   staffTime: number;
   processTime: number;
   totalGrams: number;

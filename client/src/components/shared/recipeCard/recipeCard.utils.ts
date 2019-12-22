@@ -1,7 +1,7 @@
-import { IRecipeDetail } from "./add-recipe-card.types";
+import { RecipeStep } from "./recipeCard.types";
 
 export const updateItemQuantity = (
-  recipeDetails: IRecipeDetail[],
+  recipeDetails: RecipeStep[],
   id: number,
   event: any
 ) =>

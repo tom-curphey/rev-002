@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { ThemeProvider } from "styled-components";
 
-import { theme } from "../../styles/theme";
+import { theme } from "../../../styles/theme";
 import ButtonRound from "./button-round.component";
 
 storiesOf("ButtonRound", module)

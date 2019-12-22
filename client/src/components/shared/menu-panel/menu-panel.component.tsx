@@ -2,11 +2,11 @@ import * as React from "react";
 import { MenuPanelContainer } from "./menu-panel.styles";
 import MenuPanelOption from "../menu-panel-option/menu-panel-option.component";
 
-import IconMenuItems from "../../assets/icon-menu-items.svg";
-import IconRecipes from "../../assets/icon-recipes.svg";
-import IconIngredients from "../../assets/icon-ingredients.svg";
-import IconPackaging from "../../assets/icon-packaging.svg";
-import IconShoppingList from "../../assets/icon-shopping-list.svg";
+import IconMenuItems from "../../../assets/icon-menu-items.svg";
+import IconRecipes from "../../../assets/icon-recipes.svg";
+import IconIngredients from "../../../assets/icon-ingredients.svg";
+import IconPackaging from "../../../assets/icon-packaging.svg";
+import IconShoppingList from "../../../assets/icon-shopping-list.svg";
 
 const MenuPanel: React.FC = () => (
   <MenuPanelContainer>

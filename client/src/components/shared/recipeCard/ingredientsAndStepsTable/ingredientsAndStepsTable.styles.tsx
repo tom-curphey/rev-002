@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import ButtonRound from "../../button-round/button-round.component";
 
-export const RecipeTable = styled.table`
+export const IngredientsAndStepsTable = styled.table`
   width: 100%;
   border-collapse: collapse;
 `;
 
-export const RecipeTableHeader = styled.tr`
+export const IngredientsAndStepsTableHeader = styled.tr`
   background: ${({ theme }) => theme.background};
   height: 40px;
 `;

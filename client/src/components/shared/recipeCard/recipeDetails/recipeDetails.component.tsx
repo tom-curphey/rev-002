@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CardTop, CardButton, RecipeInputs } from "./recipe-general.styles";
+import { CardTop, CardButton, RecipeInputs } from "./recipeDetails.styles";
 
 const RecipeGeneral: React.FC = () => (
   <CardTop>

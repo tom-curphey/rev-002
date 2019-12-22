@@ -1,39 +1,40 @@
 import React from "react";
 
-import { ReactComponent as DeleteIcon } from "../../../assets/icon-delete.svg";
+import { ReactComponent as DeleteIcon } from "../../../../assets/icon-delete.svg";
 
-import { Actions, IRecipeDetail } from "../add-recipe-card.types";
+import { Actions, RecipeStep } from "../recipeCard.types";
 
 import {
-  RecipeDetailsContainer,
-  RecipeDetailsInput,
-  RecipeDetailsCol,
+  IngredientsAndStepsRowContainer,
+  IngredientsAndStepsRowInput,
+  IngredientsAndStepsRowCol,
   QuantityCol,
   UnitsCol,
   TotalCol,
-  RecipeDetailsFieldContainer,
-  RecipeDetailsIcon,
+  IngredientsAndStepsRowFieldContainer,
+  IngredientsAndStepsRowIcon,
   TotalColContainer
-} from "./recipe-details-row.styles";
+} from "./ingredientsAndStepsRow.styles";
 
-interface IRecipeDetailRowProps {
-  RecipeDetail: IRecipeDetail;
+interface IngredientsAndStepsRowProps {
+  RecipeDetail: RecipeStep;
   idx: number;
   dispatch: React.Dispatch<Actions>;
 }
 
-const RecipeDetailsRow: React.FC<IRecipeDetailRowProps> = ({
+const IngredientsAndStepsRow: React.FC<IngredientsAndStepsRowProps> = ({
   RecipeDetail,
   dispatch,
   idx
 }) => {
   const { icon, itemType, quantity, units, itemName } = RecipeDetail;
   return (
-    <RecipeDetailsContainer>
-      <RecipeDetailsCol>
-        <RecipeDetailsFieldContainer>
-          <RecipeDetailsIcon src={icon} />
-          <RecipeDetailsInput
+    <IngredientsAndStepsRowContainer>
+      <IngredientsAndStepsRowCol>
+        <IngredientsAndStepsRowFieldContainer>
+          <IngredientsAndStepsRowIcon src={icon} />
+
+          <IngredientsAndStepsRowInput
             type="text"
             value={itemName}
             onChange={e =>
@@ -46,10 +47,11 @@ const RecipeDetailsRow: React.FC<IRecipeDetailRowProps> = ({
               })
             }
           />
-        </RecipeDetailsFieldContainer>
-      </RecipeDetailsCol>
+        </IngredientsAndStepsRowFieldContainer>
+      </IngredientsAndStepsRowCol>
+
       <QuantityCol>
-        <RecipeDetailsInput
+        <IngredientsAndStepsRowInput
           type="text"
           value={quantity}
           onChange={e =>
@@ -84,8 +86,8 @@ const RecipeDetailsRow: React.FC<IRecipeDetailRowProps> = ({
           </button>
         </TotalColContainer>
       </TotalCol>
-    </RecipeDetailsContainer>
+    </IngredientsAndStepsRowContainer>
   );
 };
 
-export default RecipeDetailsRow;
+export default IngredientsAndStepsRow;

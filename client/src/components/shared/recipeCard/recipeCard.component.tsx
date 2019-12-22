@@ -3,16 +3,16 @@ import {
   RecipeCardContainer,
   TotalContainer,
   TotalUnit
-} from "./add-recipe-card.styles";
+} from "./recipeCard.styles";
 
-import recipeCardReducer from "./add-recipe-reducer";
+import recipeCardReducer from "./recipeCard";
 
-import RecipeGeneral from "./recipe-general-details/recipe-general.component";
-import RecipeDetailsTable from "./recipe-details/recipe-details.component";
-import IconApple from "../../assets/icon-apple.svg";
+import RecipeGeneral from "./recipeDetails/recipeDetails.component";
+import RecipeDetailsTable from "./ingredientsAndStepsTable/ingredientsAndStepsTable.component";
+import IconApple from "../../../assets/icon-apple.svg";
 
 const INITIAL_STATE = {
-  recipeDetails: [
+  recipeSteps: [
     {
       icon: IconApple,
       itemType: "INGREDIENT",
@@ -30,13 +30,7 @@ const INITIAL_STATE = {
 const RecipeCard: React.FC = () => {
   const [state, dispatch] = useReducer(recipeCardReducer, INITIAL_STATE);
 
-  const {
-    recipeDetails,
-    staffTime,
-    processTime,
-    totalGrams,
-    totalTime
-  } = state;
+  const { recipeSteps, staffTime, processTime, totalGrams, totalTime } = state;
 
   useEffect(() => {
     let totalTime = 0;
@@ -44,7 +38,7 @@ const RecipeCard: React.FC = () => {
     let staffTime = 0;
     let processTime = 0;
 
-    recipeDetails.forEach(item => {
+    recipeSteps.forEach(item => {
       switch (item.itemType) {
         case "INGREDIENT":
           totalGrams += item.quantity;
@@ -74,12 +68,12 @@ const RecipeCard: React.FC = () => {
         }
       });
     });
-  }, [recipeDetails]);
+  }, [recipeSteps]);
 
   return (
     <RecipeCardContainer>
       <RecipeGeneral />
-      <RecipeDetailsTable dispatch={dispatch} recipeDetails={recipeDetails} />
+      <RecipeDetailsTable dispatch={dispatch} recipeDetails={recipeSteps} />
       <TotalContainer>
         <TotalUnit>
           Staff Time:<span>{staffTime}</span>

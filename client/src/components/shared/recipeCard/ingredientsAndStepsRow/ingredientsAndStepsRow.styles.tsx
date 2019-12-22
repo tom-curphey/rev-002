@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-export const RecipeDetailsContainer = styled.tr`
+export const IngredientsAndStepsRowContainer = styled.tr`
   text-align: center;
   height: 60px;
 `;
 
-export const RecipeDetailsInput = styled.input`
+export const IngredientsAndStepsRowInput = styled.input`
   width: 90%;
 `;
 
-export const RecipeDetailsFieldContainer = styled.div`
+export const IngredientsAndStepsRowFieldContainer = styled.div`
   dipslay: flex;
 
   align-items: center;
@@ -20,7 +20,7 @@ export const UnitsInput = styled.input`
   background: none;
 `;
 
-export const RecipeDetailsCol = styled.td`
+export const IngredientsAndStepsRowCol = styled.td`
   width: 48%;
 `;
 
@@ -50,6 +50,6 @@ export const TotalColContainer = styled.div`
   margin-right: 10px;
 `;
 
-export const RecipeDetailsIcon = styled.img`
+export const IngredientsAndStepsRowIcon = styled.img`
   padding: 0 6px 0 4px;
 `;

@@ -1,21 +1,21 @@
 import * as React from "react";
-import { IRecipeDetail, Actions } from "../add-recipe-card.types";
+import { Actions, RecipeStep } from "../recipeCard.types";
 
 import {
-  RecipeTable,
-  RecipeTableHeader,
+  IngredientsAndStepsTable,
+  IngredientsAndStepsTableHeader,
   TableUpdateButtonsContainer,
   UpdateTableButton
-} from "./recipe-details.styles";
+} from "./ingredientsAndStepsTable.styles";
 
-import RecipeDetailsRow from "../recipe-details-row/recipe-details-row.component";
+import IngredientsAndStepsRow from "../ingredientsAndStepsRow/ingredientsAndStepsRow.component";
 
-import IconChefHat from "../../../assets/icon-chef-hat.svg";
-import IconTimer from "../../../assets/icon-timer.svg";
-import IconApple from "../../../assets/icon-apple.svg";
+import IconChefHat from "../../../../assets/icon-chef-hat.svg";
+import IconTimer from "../../../../assets/icon-timer.svg";
+import IconApple from "../../../../assets/icon-apple.svg";
 
 interface IRecipeTableProps {
-  recipeDetails: IRecipeDetail[];
+  recipeDetails: RecipeStep[];
   dispatch: React.Dispatch<Actions>;
 }
 
@@ -25,20 +25,20 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
 }) => {
   return (
     <div>
-      <RecipeTable>
+      <IngredientsAndStepsTable>
         <thead>
-          <RecipeTableHeader>
+          <IngredientsAndStepsTableHeader>
             <th scope="column">Recipe Details</th>
             <th scope="column">Quantity</th>
             <th scope="column">Units</th>
             <th scope="column">Total</th>
-          </RecipeTableHeader>
+          </IngredientsAndStepsTableHeader>
         </thead>
         <tbody>
           {recipeDetails.map(row => {
             const key = recipeDetails.indexOf(row);
             return (
-              <RecipeDetailsRow
+              <IngredientsAndStepsRow
                 key={key}
                 dispatch={dispatch}
                 idx={key}
@@ -47,7 +47,7 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
             );
           })}
         </tbody>
-      </RecipeTable>
+      </IngredientsAndStepsTable>
       <TableUpdateButtonsContainer>
         <UpdateTableButton
           color="primary"
