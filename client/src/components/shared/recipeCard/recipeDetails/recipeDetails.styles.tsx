@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ButtonRound from "../../button-round/button-round.component";
+import ButtonRound from "../../buttonRound/buttonRound.component";
 
 export const CardTop = styled.div`
   display: flex;

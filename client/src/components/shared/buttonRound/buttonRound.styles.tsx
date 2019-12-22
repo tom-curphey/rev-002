@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { IProps } from "./button-round.types";
+import { IProps } from "./buttonRound.types";
 
 const buttonColorStyles = ({ color, inverted }: IProps) => {
   let buttonColor: string = `textContrast`;

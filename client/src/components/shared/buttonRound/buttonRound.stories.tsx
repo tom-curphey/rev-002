@@ -3,7 +3,7 @@ import * as React from "react";
 import { ThemeProvider } from "styled-components";
 
 import { theme } from "../../../styles/theme";
-import ButtonRound from "./button-round.component";
+import ButtonRound from "./buttonRound.component";
 
 storiesOf("ButtonRound", module)
   .add("default/ primary/ secondary", () => (
