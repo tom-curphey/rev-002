@@ -1,24 +1,21 @@
 import React, { useReducer, useEffect } from "react";
-
-import { IState, Actions } from "./add-recipe-card.types";
-
 import {
   RecipeCardContainer,
   TotalContainer,
   TotalUnit
 } from "./add-recipe-card.styles";
 
+import recipeCardReducer from "./add-recipe-reducer";
+
 import RecipeGeneral from "./recipe-general-details/recipe-general.component";
 import RecipeDetailsTable from "./recipe-details/recipe-details.component";
-
 import IconApple from "../../assets/icon-apple.svg";
-import IconChefHat from "../../assets/icon-chef-hat.svg";
-import IconTimer from "../../assets/icon-timer.svg";
 
 const INITIAL_STATE = {
   recipeDetails: [
     {
       icon: IconApple,
+      itemType: "INGREDIENT",
       itemName: "",
       units: "grams",
       quantity: 0
@@ -30,101 +27,54 @@ const INITIAL_STATE = {
   totalTime: 0
 };
 
-const recipeCardReducer = (state: IState, action: Actions) => {
-  switch (action.type) {
-    case "ADD_NEW_INGREDIENT":
-      return {
-        ...state,
-        recipeDetails: state.recipeDetails.concat(action.payload)
-      };
-
-    case "REMOVE_ITEM":
-      return {
-        ...state,
-        recipeDetails: state.recipeDetails.filter(
-          item => state.recipeDetails.indexOf(item) !== action.payload
-        )
-      };
-
-    case "UPDATE_RECIPE_DETAILS":
-      return {
-        ...state,
-        recipeDetails: state.recipeDetails.map(item =>
-          state.recipeDetails.indexOf(item) === action.payload.id
-            ? { ...item, itemName: action.payload.event }
-            : item
-        )
-      };
-
-    case "UPDATE_QUANTITY":
-      switch (action.payload.icon) {
-        case IconApple:
-          return {
-            ...state,
-            recipeDetails: state.recipeDetails.map(item =>
-              state.recipeDetails.indexOf(item) === action.payload.id
-                ? { ...item, quantity: action.payload.event }
-                : item
-            )
-          };
-
-        case IconChefHat:
-          return {
-            ...state,
-            recipeDetails: state.recipeDetails.map(item =>
-              state.recipeDetails.indexOf(item) === action.payload.id
-                ? { ...item, quantity: action.payload.event }
-                : item
-            ),
-            staffTime: state.staffTime += action.payload.event
-          };
-
-        case IconTimer:
-          return {
-            ...state,
-            recipeDetails: state.recipeDetails.map(item =>
-              state.recipeDetails.indexOf(item) === action.payload.id
-                ? { ...item, quantity: action.payload.event }
-                : item
-            ),
-            processTime: state.processTime += action.payload.event
-          };
-      }
-    case "UPDATE_TOTAL":
-      return {
-        ...state,
-        totalQuantity: action.payload.totalQuantity,
-        totalTime: action.payload.totalTime
-      };
-
-    default:
-      return state;
-  }
-};
-
 const RecipeCard: React.FC = () => {
   const [state, dispatch] = useReducer(recipeCardReducer, INITIAL_STATE);
 
-  const { recipeDetails } = state;
+  const {
+    recipeDetails,
+    staffTime,
+    processTime,
+    totalGrams,
+    totalTime
+  } = state;
 
   useEffect(() => {
     let totalTime = 0;
-    let totalQuantity = 0;
+    let totalGrams = 0;
+    let staffTime = 0;
+    let processTime = 0;
 
-    recipeDetails.forEach(item =>
-      item.icon === IconApple
-        ? (totalQuantity += item.quantity)
-        : (totalTime += item.quantity)
-    );
+    recipeDetails.forEach(item => {
+      switch (item.itemType) {
+        case "INGREDIENT":
+          totalGrams += item.quantity;
+          break;
 
-    dispatch({
-      type: "UPDATE_TOTAL",
-      payload: {
-        totalTime: totalTime,
-        totalQuantity: totalQuantity
+        case "STAFF_TIME":
+          staffTime += item.quantity;
+          totalTime += item.quantity;
+          break;
+
+        case "PROCESS_TIME":
+          processTime += item.quantity;
+          totalTime += item.quantity;
+          break;
+
+        default:
+          break;
       }
+
+      dispatch({
+        type: "UPDATE_TOTAL",
+        payload: {
+          totalTime,
+          totalGrams,
+          staffTime,
+          processTime
+        }
+      });
     });
-  }, [state.recipeDetails]);
+  }, [recipeDetails]);
 
   return (
     <RecipeCardContainer>
@@ -132,10 +82,16 @@ const RecipeCard: React.FC = () => {
       <RecipeDetailsTable dispatch={dispatch} recipeDetails={recipeDetails} />
       <TotalContainer>
         <TotalUnit>
-          Total Grams:<span> {state.totalGrams} </span>
+          Staff Time:<span>{staffTime}</span>
         </TotalUnit>
         <TotalUnit>
-          Total Time: <span> {state.totalTime} </span>
+          Process Time:<span>{processTime}</span>
+        </TotalUnit>
+        <TotalUnit>
+          Total Grams:<span>{totalGrams} </span>
+        </TotalUnit>
+        <TotalUnit>
+          Total Time:<span>{totalTime} </span>
         </TotalUnit>
       </TotalContainer>
     </RecipeCardContainer>

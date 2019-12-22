@@ -46,7 +46,7 @@ export const TotalCol = styled.td`
 export const TotalColContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-right: 10px;
 `;
 

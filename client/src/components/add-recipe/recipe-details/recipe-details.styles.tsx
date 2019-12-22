@@ -19,4 +19,5 @@ export const TableUpdateButtonsContainer = styled.div`
 export const UpdateTableButton = styled(ButtonRound)`
   border-radius: unset;
   height: 40px;
+  border-right: none;
 `;
