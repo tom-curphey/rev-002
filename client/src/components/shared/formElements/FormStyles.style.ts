@@ -1,1 +1,1 @@
-// import moduleName from 'styled-components'
+import moduleName from "styled-components";
