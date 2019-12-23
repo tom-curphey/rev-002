@@ -56,8 +56,9 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
               type: "ADD_NEW_INGREDIENT",
               payload: {
                 icon: IconApple,
+                itemName: "",
                 itemType: "INGREDIENT",
-                recipeDetails: "",
+
                 units: "grams",
                 quantity: 0
               }
@@ -74,7 +75,7 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
               payload: {
                 icon: IconChefHat,
                 itemType: "STAFF_TIME",
-                recipeDetails: "",
+                itemName: "",
                 units: "minutes",
                 quantity: 0
               }
@@ -91,7 +92,7 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
               payload: {
                 icon: IconTimer,
                 itemType: "PROCESS_TIME",
-                recipeDetails: "",
+                itemName: "",
                 units: "minutes",
                 quantity: 0
               }

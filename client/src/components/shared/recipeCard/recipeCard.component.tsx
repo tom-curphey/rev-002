@@ -5,13 +5,19 @@ import {
   TotalUnit
 } from "./recipeCard.styles";
 
-import recipeCardReducer from "./recipeCard";
+import recipeCardReducer from "./recipeCardReducer";
 
-import RecipeGeneral from "./recipeDetails/recipeDetails.component";
+import RecipeDetails from "./recipeDetails/recipeDetails.component";
 import RecipeDetailsTable from "./ingredientsAndStepsTable/ingredientsAndStepsTable.component";
 import IconApple from "../../../assets/icon-apple.svg";
 
-const INITIAL_STATE = {
+const newRecipe = {
+  recipeDetails: {
+    recipeName: "",
+    recipeServes: 0,
+    salesPricePerServe: 0,
+    weeklySalesPerServe: 0
+  },
   recipeSteps: [
     {
       icon: IconApple,
@@ -27,10 +33,17 @@ const INITIAL_STATE = {
   totalTime: 0
 };
 
-const RecipeCard: React.FC = () => {
-  const [state, dispatch] = useReducer(recipeCardReducer, INITIAL_STATE);
+const RecipeCard: React.FC<{ recipe: any }> = ({ recipe = newRecipe }) => {
+  const [state, dispatch] = useReducer(recipeCardReducer, recipe);
 
-  const { recipeSteps, staffTime, processTime, totalGrams, totalTime } = state;
+  const {
+    recipeDetails,
+    recipeSteps,
+    staffTime,
+    processTime,
+    totalGrams,
+    totalTime
+  } = state;
 
   useEffect(() => {
     let totalTime = 0;
@@ -72,7 +85,7 @@ const RecipeCard: React.FC = () => {
 
   return (
     <RecipeCardContainer>
-      <RecipeGeneral />
+      <RecipeDetails recipeDetails={recipeDetails} dispatch={dispatch} />
       <RecipeDetailsTable dispatch={dispatch} recipeDetails={recipeSteps} />
       <TotalContainer>
         <TotalUnit>
