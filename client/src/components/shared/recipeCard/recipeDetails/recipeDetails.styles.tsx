@@ -14,6 +14,16 @@ export const CardButton = styled(ButtonRound)`
   margin-left: 15px;
 `;
 
+export const RecipeNameInput = styled.input`
+  width: 340px;
+  height: 60px;
+  margin-left: 10px;
+  top: 142px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+`;
+
 export const RecipeInputs = styled.ul`
   padding: 10px;
   list-style-type: none;

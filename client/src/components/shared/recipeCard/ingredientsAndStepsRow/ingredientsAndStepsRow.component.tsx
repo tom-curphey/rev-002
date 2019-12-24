@@ -16,6 +16,10 @@ import {
   TotalColContainer
 } from "./ingredientsAndStepsRow.styles";
 
+import IconChefHat from "../../../../assets/icon-chef-hat.svg";
+import IconTimer from "../../../../assets/icon-timer.svg";
+import IconApple from "../../../../assets/icon-apple.svg";
+
 interface IngredientsAndStepsRowProps {
   RecipeDetail: RecipeStep;
   idx: number;
@@ -27,7 +31,23 @@ const IngredientsAndStepsRow: React.FC<IngredientsAndStepsRowProps> = ({
   dispatch,
   idx
 }) => {
-  const { icon, itemType, quantity, units, itemName } = RecipeDetail;
+  const { itemType, quantity, units, itemName } = RecipeDetail;
+
+  let icon;
+
+  switch (itemType) {
+    case "INGREDIENT":
+      icon = IconApple;
+      break;
+    case "STAFF_TIME":
+      icon = IconChefHat;
+      break;
+
+    case "PROCESS_TIME":
+      icon = IconTimer;
+      break;
+  }
+
   return (
     <IngredientsAndStepsRowContainer>
       <IngredientsAndStepsRowCol>

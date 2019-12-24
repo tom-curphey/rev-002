@@ -1,9 +1,51 @@
 import { IState, Actions } from "./recipeCard.types";
 
-import { updateItemQuantity } from "./recipeCard.utils";
+import {
+  updateItemQuantity,
+  updateRecipeDetailsValue
+} from "./recipeCard.utils";
 
 const recipeCardReducer = (state: IState, action: Actions) => {
   switch (action.type) {
+    case "UPDATE_RECIPE_NAME":
+      return {
+        ...state,
+        recipeDetails: {
+          ...state.recipeDetails,
+          recipeName: action.payload
+        }
+      };
+
+    case "UPDATE_RECIPE_SERVES":
+      return {
+        ...state,
+        recipeDetails: updateRecipeDetailsValue(
+          state.recipeDetails,
+          "recipeServes",
+          action
+        )
+      };
+
+    case "UPDATE_SALES_PRICE_PER_SERVICE":
+      return {
+        ...state,
+        recipeDetails: updateRecipeDetailsValue(
+          state.recipeDetails,
+          "salesPricePerServe",
+          action
+        )
+      };
+
+    case "UPDATE_EXPECTED_WEEKLY_SALES_PER_SERVE":
+      return {
+        ...state,
+        recipeDetails: updateRecipeDetailsValue(
+          state.recipeDetails,
+          "weeklySalesPerServe",
+          action
+        )
+      };
+
     case "ADD_NEW_INGREDIENT":
       return {
         ...state,

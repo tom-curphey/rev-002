@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ButtonRound from "../buttonRound/buttonRound.component";
 
 export const RecipeCardContainer = styled.div`
   width: 900px;
