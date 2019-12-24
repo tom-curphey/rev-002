@@ -10,10 +10,6 @@ import {
 
 import IngredientsAndStepsRow from "../ingredientsAndStepsRow/ingredientsAndStepsRow.component";
 
-import IconChefHat from "../../../../assets/icon-chef-hat.svg";
-import IconTimer from "../../../../assets/icon-timer.svg";
-import IconApple from "../../../../assets/icon-apple.svg";
-
 interface IRecipeTableProps {
   recipeDetails: RecipeStep[];
   dispatch: React.Dispatch<Actions>;
@@ -55,10 +51,8 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
             dispatch({
               type: "ADD_NEW_INGREDIENT",
               payload: {
-                icon: IconApple,
                 itemName: "",
                 itemType: "INGREDIENT",
-
                 units: "grams",
                 quantity: 0
               }
@@ -73,7 +67,6 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
             dispatch({
               type: "ADD_NEW_INGREDIENT",
               payload: {
-                icon: IconChefHat,
                 itemType: "STAFF_TIME",
                 itemName: "",
                 units: "minutes",
@@ -90,7 +83,6 @@ const RecipeDetailsTable: React.FC<IRecipeTableProps> = ({
             dispatch({
               type: "ADD_NEW_INGREDIENT",
               payload: {
-                icon: IconTimer,
                 itemType: "PROCESS_TIME",
                 itemName: "",
                 units: "minutes",

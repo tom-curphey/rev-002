@@ -1,5 +1,4 @@
 export interface RecipeStep {
-  icon: any;
   itemType: string;
   itemName: string;
   units: string;

@@ -1,27 +1,25 @@
 import * as React from "react";
-import { Query } from "react-apollo";
+import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import RecipeCard from "./recipeCard.component";
 
-const GET_INITIAL_RECIPE = gql`
-  {
-    item @client
+const ADD_NEW_RECIPE = gql`
+  mutation AddNewRecipe($recipe: Recipe!) {
+    addNewRecipe(recipe: $recipe) @client
   }
 `;
 
 const RecipeCardContainer: React.FC = () => (
-  <Query query={GET_INITIAL_RECIPE}>
-    {({ loading, error, data }: any) => {
-      if (loading) {
-        console.log(loading);
-        return <div>LOADING</div>;
-      }
-
-      console.log(data);
-      return <div>RETURNED</div>;
-    }}
-  </Query>
+  <Mutation mutation={ADD_NEW_RECIPE}>
+    {(saveNewRecipe: any) => (
+      <RecipeCard
+        saveRecipe={recipe => {
+          saveNewRecipe({ variables: { recipe } });
+        }}
+      />
+    )}
+  </Mutation>
 );
 
 export default RecipeCardContainer;

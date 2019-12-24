@@ -9,7 +9,7 @@ import recipeCardReducer from "./recipeCardReducer";
 
 import RecipeDetails from "./recipeDetails/recipeDetails.component";
 import RecipeDetailsTable from "./ingredientsAndStepsTable/ingredientsAndStepsTable.component";
-import IconApple from "../../../assets/icon-apple.svg";
+import ButtonRound from "../buttonRound/buttonRound.component";
 
 const newRecipe = {
   recipeDetails: {
@@ -20,7 +20,6 @@ const newRecipe = {
   },
   recipeSteps: [
     {
-      icon: IconApple,
       itemType: "INGREDIENT",
       itemName: "",
       units: "grams",
@@ -33,7 +32,10 @@ const newRecipe = {
   totalTime: 0
 };
 
-const RecipeCard: React.FC<{ recipe: any }> = ({ recipe = newRecipe }) => {
+const RecipeCard: React.FC<{
+  recipe?: any;
+  saveRecipe: (recipe: any) => void;
+}> = ({ recipe = newRecipe, saveRecipe }) => {
   const [state, dispatch] = useReducer(recipeCardReducer, recipe);
 
   const {
@@ -101,6 +103,9 @@ const RecipeCard: React.FC<{ recipe: any }> = ({ recipe = newRecipe }) => {
           Total Time:<span>{totalTime} </span>
         </TotalUnit>
       </TotalContainer>
+      <ButtonRound color="secondary" onClick={() => saveRecipe(state)}>
+        Confirm Recipe
+      </ButtonRound>
     </RecipeCardContainer>
   );
 };
